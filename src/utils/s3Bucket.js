@@ -103,7 +103,7 @@ class S3Service {
       });
       const Bucket = s3details.s3bucket_name;
       const fileExtension = path.extname(file.originalname);
-      const fileName = `keerthijewellery/webadmin/assets/${folder}/${Date.now()}${fileExtension}`;
+      const fileName = `${process.env.AWS_LOCAL_PATH}${folder}/${Date.now()}${fileExtension}`;
 
       if (!file.buffer) {
         throw new Error('File buffer is empty or invalid.');

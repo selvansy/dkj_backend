@@ -1,4 +1,5 @@
 import TicketRaiseModel from "../../models/chit/ticketRaiseModel.js";
+import config from "../../../config/chit/env.js";
 
 class TicketRaiseRepository {
   async findByTicketNumber(ticketNo) {
@@ -38,7 +39,7 @@ class TicketRaiseRepository {
                     pathUrl: {
                         $concat: [
                             { $ifNull: ["$s3Details.s3display_url", ""] },
-                            "keerthijewellery/webadmin/assets/Ticket_Raise"
+                            `${config.AWS_LOCAL_PATH}/Ticket_Raise`
                         ]
                     }
                 }

@@ -1,5 +1,6 @@
 import wishlistModel from "../../models/chit/wishlistModel.js"
 import mongoose from "mongoose";
+import config from "../../../config/chit/env.js";
 
 class WishlistRepository{
     async findOne(query){
@@ -125,7 +126,7 @@ class WishlistRepository{
                   }
                 },
                 pathUrl: {
-                  $concat: ["$s3Details.s3display_url", "keerthijewellery/webadmin/assets/products/"]
+                  $concat: ["$s3Details.s3display_url", `${config.AWS_LOCAL_PATH}/products/`]
                 }
               }
             },
