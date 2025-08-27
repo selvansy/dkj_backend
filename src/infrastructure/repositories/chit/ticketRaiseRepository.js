@@ -39,7 +39,7 @@ class TicketRaiseRepository {
                     pathUrl: {
                         $concat: [
                             { $ifNull: ["$s3Details.s3display_url", ""] },
-                            `${config.AWS_LOCAL_PATH}/Ticket_Raise`
+                            `${config.AWS_LOCAL_PATH}Ticket_Raise`
                         ]
                     }
                 }

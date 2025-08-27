@@ -108,7 +108,7 @@ class CustomerRepository {
             pathurl: {
               $concat: [
                 "$s3Details.s3display_url",
-                `${config.AWS_LOCAL_PATH}/customer/`,
+                `${config.AWS_LOCAL_PATH}customer/`,
               ],
             },
           },

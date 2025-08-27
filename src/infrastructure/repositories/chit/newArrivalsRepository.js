@@ -70,7 +70,7 @@ class NewArrivalRepository {
             pathurl: {
               $concat: [
                   "$s3Details.s3display_url",
-                  `${config.AWS_LOCAL_PATH}/newarrivals/`
+                  `${config.AWS_LOCAL_PATH}newarrivals/`
               ]
           }
           },
@@ -230,7 +230,7 @@ class NewArrivalRepository {
             pathurl: {
               $concat: [
                 "$s3Details.s3display_url",
-                `${config.AWS_LOCAL_PATH}/assets/products/`
+                `${config.AWS_LOCAL_PATH}assets/products/`
               ]
             }
           }

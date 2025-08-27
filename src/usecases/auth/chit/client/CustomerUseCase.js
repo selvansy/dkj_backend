@@ -4,7 +4,7 @@ import config from "../../../../config/chit/env.js";
 import crypto from "crypto";
 import { generateReferralCode } from "../../../../utils/cryptoGenerator.js";
 import smsService from "../../../../config/chit/smsService.js";
-import SchemeAccountRepository from '../../../../infrastructure/repositories/chit/schemeAccountRepository.js'
+import SchemeAccountRepository from '../../../../infrastructure/repositories/chit/schemeAccountRepository.js';
 
 class CustomerUseCase {
   constructor(
@@ -991,7 +991,7 @@ class CustomerUseCase {
 
       if(customerData){
         const s3Configs = await this.s3Helper();
-        customerData.customerDetails.pathUrl = `${s3Configs.s3display_url}jeganjewellery/webadmin/assets/customer/`;
+        customerData.customerDetails.pathUrl = `${s3Configs.s3display_url}${config.AWS_LOCAL_PATH}customer/`;
       }
       
       if(!customerData){
