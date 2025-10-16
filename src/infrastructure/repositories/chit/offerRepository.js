@@ -50,7 +50,7 @@ class OfferRepository {
               $concat: [
                   "$s3Details.s3display_url",
                   // "keerthijewellery/webadmin/assets/offers/"
-                  `${config.AWS_LOCAL_PATH}offers`
+                  `${config.AWS_LOCAL_PATH}offers/`
               ]
           }
           },
@@ -186,7 +186,7 @@ class OfferRepository {
             $concat: [
                 "$s3Details.s3display_url",
                 // "keerthijewellery/webadmin/assets/offers/"
-                `${config.AWS_LOCAL_PATH}offers`
+                `${config.AWS_LOCAL_PATH}offers/`
             ]
         }
         }}

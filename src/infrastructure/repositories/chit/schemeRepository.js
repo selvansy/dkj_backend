@@ -1,5 +1,6 @@
 import schemeModel from "../../models/chit/schemeModel.js";
 import schemeClassificationModel from "../../models/chit/schemeClassificationModel.js";
+import config from "../../../config/chit/env.js";
 
 class SchemeRepository {
   async findById(id) {
@@ -80,14 +81,44 @@ class SchemeRepository {
     return null;
   }
 
-  async findAll(query) {
-    const schemeData = await schemeModel.find(query);
+  // async findAll(query) {
+  //   const schemeData = await schemeModel.find(query);
 
-    if (schemeData) {
-      return schemeData;
-    }
+  //   if (schemeData) {
+  //     return schemeData;
+  //   }
 
-    return null;
+  //   return null;
+  // }
+
+    async findAll(query) {
+    const schemeData = await schemeModel.aggregate([
+      { $match: query },
+      {
+        $lookup: {
+          from: "s3bucketsettings",
+          localField: "id_branch",
+          foreignField: "id_branch",
+          as: "s3Details",
+        },
+      },
+      { $unwind: "$s3Details" },
+      {
+        $project: {
+          scheme_name:1,
+          logo: 1,
+          scheme_type: 1,
+          pathurl: {
+            $concat: [
+              "$s3Details.s3display_url",
+              `${config.AWS_LOCAL_PATH}classification/`,
+            ],
+          },
+        },
+      },
+    ]);
+
+    return schemeData.length > 0 ? schemeData : null;
   }
 
   async addScheme(data) {
